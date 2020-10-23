@@ -1,4 +1,4 @@
-module github.com/mrobinsn/go-tvmaze
+module github.com/kokoodev/go-tvmaze
 
 go 1.12
 
