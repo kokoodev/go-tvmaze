@@ -123,6 +123,16 @@ func (s Show) GetIMDBID() string {
 	return val
 }
 
+// GetShowByIMDbID find show by imdbID
+func (c Client) GetShowByIMDbID(id string) (*Show, error) {
+	url := baseURLWithPathQuery("lookup/shows", "imdb", id)
+	show := &Show{}
+	if _, err := c.get(url, show); err != nil {
+		return nil, err
+	}
+	return show, nil
+}
+
 // GetShows returns a list of all shows in the TVMaze database. When the end of the index
 // is reached, a nil slice is returned.
 func (c Client) GetShows(page int) ([]Show, error) {
