@@ -112,15 +112,15 @@ func (s Show) GetTVDBID() int {
 }
 
 // GetIMDBID returns the show's ID on imdb.com
-func (s Show) GetIMDBID() string {
+func (s Show) GetIMDBID() *string {
 	if s.Remotes["imdb"] == nil {
-		return ""
+		return nil
 	}
 	var val string
 	if err := json.Unmarshal(*s.Remotes["imdb"], &val); err != nil {
 		log.WithError(err).WithField("imdb_id", s.Remotes["imdb"]).Error("failed to parse imdb id")
 	}
-	return val
+	return &val
 }
 
 // GetShowByIMDbID find show by imdbID
